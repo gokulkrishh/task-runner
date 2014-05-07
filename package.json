@@ -4,7 +4,9 @@
   "description": "A task runner using gulp.js",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "^3.6.2"
+    "gulp": "^3.6.2",
+    "gulp-jshint": "^1.5.5",
+    "gulp-uglify": "^0.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
