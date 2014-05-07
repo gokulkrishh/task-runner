@@ -1,0 +1,22 @@
+{
+  "name": "Task-Runner",
+  "version": "0.0.1",
+  "description": "A task runner using gulp.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.6.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gokulkrishh/Task-Runner.git"
+  },
+  "author": "gokulkrishh (https://github.com/gokulkrishh)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gokulkrishh/Task-Runner/issues"
+  },
+  "homepage": "https://github.com/gokulkrishh/Task-Runner"
+}
