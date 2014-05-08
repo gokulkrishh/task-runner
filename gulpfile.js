@@ -1,31 +1,69 @@
 'use strict';
 
-var gulp 	  = require('gulp'),
-	chalk 	  = require('chalk'),
-	concat 	  = require('gulp-concat'),
-	jshint 	  = require('gulp-jshint'),
-	minifycss = require('gulp-minify-css'),
-	stylish   = require('jshint-stylish'),
-	uglify    = require('gulp-uglify'),
-	watch     = require('gulp-watch');
+var gulp 	  	= require('gulp'),
+	chalk 	  	= require('chalk'),
+	concat 	  	= require('gulp-concat'),
+	gulpif 	  	= require('gulp-if'),
+	jshint 	  	= require('gulp-jshint'),
+	minifycss 	= require('gulp-minify-css'),
+	minifyhtml 	= require('gulp-minify-html'),
+	runSequence = require('run-sequence'),
+	stylish   	= require('jshint-stylish'),
+	uglify    	= require('gulp-uglify'),
+	watch     	= require('gulp-watch');
 
 var src = {
-	app : '/app',
-	css : '/app/css',
-	js : '/app/js',
-	images : '/app/images'
+	root : 'app',
+	css : 'app/css',
+	js : 'app/js',
+	images : 'app/images'
 };
 
 var	build = {
-	css : '/build/css',
-	js : '/build/js',
-	images : '/build/images'
+	root : 'build',
+	css : 'build/css',
+	js : 'build/js',
+	images : 'build/images'
+};
+
+var production = false;
+
+// minify html options
+var opts = {
+	comments: false, 
+	quotes: true, 
+	spare:true, 
+	empty: true, 
+	cdata:true
 };
 
 // chalk config
-var error = chalk.red.bold,
-	hint  = chalk.yellow.bold,
-	watch = chalk.green.bold;
+var error  = chalk.red.bold,
+	hint   = chalk.yellow.bold,
+	change  = chalk.red;
+
+/**================================================
+  		HTML -- minify html to build
+===================================================*/
+
+gulp.task('html', function() {
+	console.log(hint('\n --------- Running html tasks ------------------------------------------->>>'));
+	return gulp.src(['app/*.html'])
+	.pipe(gulpif(production, minifyhtml(opts)))
+	.pipe(gulp.dest(build.root));
+});
+
+/**===============================================
+  		CSS Tasks -- minify, concat
+=================================================*/
+
+gulp.task('css', function() {
+	console.log(hint('\n --------- Running css tasks ---------------------------------------------->>>'));
+	return gulp.src(['app/css/*.css'])
+	.pipe(gulpif(production, minifycss()))
+	.pipe(concat('styles.css'))
+	.pipe(gulp.dest(build.css));
+});
 
 /**================================================
   		Script Tasks -- js hint, uglify, concat
@@ -37,20 +75,8 @@ gulp.task('scripts', function() {
 	.pipe(jshint('.jshintrc'))
 	.pipe(jshint.reporter(stylish))
 	.pipe(concat('all.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('build/js'));
-});
-
-/**===============================================
-  		CSS Tasks -- minify, concat
-=================================================*/
-
-gulp.task('css', function() {
-	console.log(hint('\n --------- Running CSS tasks ---------------------------------------------->>>'));
-	return gulp.src(['app/css/*.css'])
-	.pipe(minifycss())
-	.pipe(concat('styles.css'))
-	.pipe(gulp.dest('build/css'));
+	.pipe(gulpif(production, uglify()))
+	.pipe(gulp.dest(build.js));
 });
 
 /**===============================================
@@ -58,24 +84,43 @@ gulp.task('css', function() {
 =================================================*/
 
 gulp.task('watch', function() {
-	console.log(watch('\n --------- Watching all files --------------------------------------------->>> \n'));
-	var script = gulp.watch(['app/js/**/*.js'], ['scripts']),
+	console.log(hint('\n --------- Watching all files --------------------------------------------->>> \n'));
+	var html = gulp.watch(['app/js/*.html'], ['html']),
+		script = gulp.watch(['app/js/**/*.js'], ['scripts']),
 		css    = gulp.watch(['app/css/*.css'], ['css']);
 
 	var log = function(event) {
-		console.log(watch('\n --------- Files ' + event.path + ' was ------------->>> ' + event.type));
+		console.log(change('\n -- File ' + event.path + ' was ' + event.type + ' -->>> \n'));
 	}
 
 	//on change print file name and event type
+	html.on('change', log);
 	script.on('change', log);
+	css.on('change', log);
 
 });
+
+/**==============================================
+  		Gulp build Tasks
+=================================================*/
+
+gulp.task('build', function() {
+	console.log(hint('\n --------- Build Development Mode  --------------------------------------------->>> \n'));
+	runSequence('html', 'scripts', 'css', 'watch');
+});
+
+gulp.task('prod', function() {
+	console.log(hint('\n --------- Build Production Mode  --------------------------------------------->>> \n'));
+	production = true;
+	runSequence('html', 'scripts', 'css', 'watch');
+});
+
 
 /**==============================================
   		Gulp Default Tasks -- all
 =================================================*/
 
-gulp.task('default', ['scripts', 'css', 'watch']);
+gulp.task('default', ['build']);
 
 
 
