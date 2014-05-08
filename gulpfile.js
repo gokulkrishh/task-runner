@@ -101,7 +101,7 @@ gulp.task('watch', function() {
 });
 
 /**==============================================
-  		Gulp build Tasks
+  		Gulp build Tasks - dev, production
 =================================================*/
 
 gulp.task('build', function() {
