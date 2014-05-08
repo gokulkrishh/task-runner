@@ -5,7 +5,6 @@ Installation guide:
 =====================
 
     Run following command
-    ====================== 
     
     1. npm install  -- to install dependencies
     2. gulp         -- to run html, css, js linting ( development mode )
