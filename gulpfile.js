@@ -47,7 +47,7 @@ var error  = chalk.red.bold,
 ===================================================*/
 
 gulp.task('html', function() {
-	console.log(hint('\n --------- Running html tasks ------------------------------------------->>>'));
+	console.log(hint('\n --------- Running html tasks --------------------------------------------->>>'));
 	return gulp.src(['app/*.html'])
 	.pipe(gulpif(production, minifyhtml(opts)))
 	.pipe(gulp.dest(build.root));
@@ -105,7 +105,7 @@ gulp.task('watch', function() {
 =================================================*/
 
 gulp.task('build', function() {
-	console.log(hint('\n --------- Build Development Mode  --------------------------------------------->>> \n'));
+	console.log(hint('\n --------- Build Development Mode  ---------------------------------------->>> \n'));
 	runSequence('html', 'scripts', 'css', 'watch');
 });
 
