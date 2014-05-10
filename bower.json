@@ -1,0 +1,23 @@
+{
+  "name": "Task-Runner",
+  "version": "0.0.1",
+  "dependencies" : {
+    "jquery" : "*"
+  },
+  "homepage": "https://github.com/gokulkrishh/Task-Runner",
+  "authors": [
+    "gokulkrishh <krishnangokul9@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
