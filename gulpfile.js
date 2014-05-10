@@ -1,11 +1,12 @@
 'use strict';
 
 var gulp 	  	= require('gulp'),
-	concatBowerFiles = require('gulp-bower-files'),
+	concatBower = require('gulp-bower-files'),
 	chalk 	  	= require('chalk'),
 	concat 	  	= require('gulp-concat'),
 	gulpif 	  	= require('gulp-if'),
 	jshint 	  	= require('gulp-jshint'),
+	livereload  = require('gulp-livereload'),
 	minifycss 	= require('gulp-minify-css'),
 	minifyhtml 	= require('gulp-minify-html'),
 	runSequence = require('run-sequence'),
@@ -53,7 +54,8 @@ gulp.task('html', function() {
 	console.log(hint('\n --------- Running html tasks --------------------------------------------->>>'));
 	return gulp.src(['app/*.html'])
 	.pipe(gulpif(production, minifyhtml(opts)))
-	.pipe(gulp.dest(build.root));
+	.pipe(gulp.dest(build.root))
+	.pipe(livereload());
 });
 
 /**===============================================
@@ -65,7 +67,8 @@ gulp.task('css', function() {
 	return gulp.src(['app/css/*.css'])
 	.pipe(gulpif(production, minifycss()))
 	.pipe(concat('styles.css'))
-	.pipe(gulp.dest(build.css));
+	.pipe(gulp.dest(build.css))
+	.pipe(livereload());
 });
 
 /**================================================
@@ -79,15 +82,16 @@ gulp.task('scripts', function() {
 	.pipe(jshint.reporter(stylish))
 	.pipe(concat('all.js'))
 	.pipe(gulpif(production, uglify()))
-	.pipe(gulp.dest(build.js));
+	.pipe(gulp.dest(build.js))
+	.pipe(livereload());
 });
 
 /**================================================
   		Concat - all bower packages
 ===================================================*/
 
-gulp.task('bower-files', function() {
-	concatBowerFiles().pipe(concat('bowerFiles.js'))
+gulp.task('concat-bower', function() {
+	concatBower().pipe(concat('bowerFiles.js'))
 	.pipe(gulpif(production, uglify()))
 	.pipe(gulp.dest(build.lib));
 });
@@ -120,13 +124,13 @@ gulp.task('watch', function() {
 
 gulp.task('build', function() {
 	console.log(hint('\n --------- Build Development Mode  ---------------------------------------->>> \n'));
-	runSequence('html', 'scripts', 'css','bower-files', 'watch');
+	runSequence('html', 'scripts', 'css', 'concat-bower', 'watch');
 });
 
 gulp.task('prod', function() {
 	console.log(hint('\n --------- Build Production Mode  --------------------------------------------->>> \n'));
 	production = true;
-	runSequence('html', 'scripts', 'css','bower-files', 'watch');
+	runSequence('html', 'scripts', 'css', 'concat-bower', 'watch');
 });
 
 
