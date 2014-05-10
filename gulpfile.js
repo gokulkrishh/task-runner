@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp 	  	= require('gulp'),
+	concatBowerFiles = require('gulp-bower-files'),
 	chalk 	  	= require('chalk'),
 	concat 	  	= require('gulp-concat'),
 	gulpif 	  	= require('gulp-if'),
@@ -16,6 +17,7 @@ var src = {
 	root : 'app',
 	css : 'app/css',
 	js : 'app/js',
+	lib : 'app/lib',
 	images : 'app/images'
 };
 
@@ -23,6 +25,7 @@ var	build = {
 	root : 'build',
 	css : 'build/css',
 	js : 'build/js',
+	lib : 'build/lib',
 	images : 'build/images'
 };
 
@@ -79,6 +82,17 @@ gulp.task('scripts', function() {
 	.pipe(gulp.dest(build.js));
 });
 
+/**================================================
+  		Concat - all bower packages
+===================================================*/
+
+gulp.task('bower-files', function() {
+	concatBowerFiles().pipe(concat('bowerFiles.js'))
+	.pipe(gulpif(production, uglify()))
+	.pipe(gulp.dest(build.lib));
+});
+
+
 /**===============================================
   		Watch -- all files
 =================================================*/
@@ -106,13 +120,13 @@ gulp.task('watch', function() {
 
 gulp.task('build', function() {
 	console.log(hint('\n --------- Build Development Mode  ---------------------------------------->>> \n'));
-	runSequence('html', 'scripts', 'css', 'watch');
+	runSequence('html', 'scripts', 'css','bower-files', 'watch');
 });
 
 gulp.task('prod', function() {
 	console.log(hint('\n --------- Build Production Mode  --------------------------------------------->>> \n'));
 	production = true;
-	runSequence('html', 'scripts', 'css', 'watch');
+	runSequence('html', 'scripts', 'css','bower-files', 'watch');
 });
 
 
