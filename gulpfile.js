@@ -3,6 +3,7 @@
 var gulp 	  	= require('gulp'),
 	concatBower = require('gulp-bower-files'),
 	chalk 	  	= require('chalk'),
+	connect 	= require('connect'),
 	concat 	  	= require('gulp-concat'),
 	gulpif 	  	= require('gulp-if'),
 	jshint 	  	= require('gulp-jshint'),
@@ -11,6 +12,7 @@ var gulp 	  	= require('gulp'),
 	minifyhtml 	= require('gulp-minify-html'),
 	runSequence = require('run-sequence'),
 	stylish   	= require('jshint-stylish'),
+	tiny-lr   	= require('tiny-lr'),
 	uglify    	= require('gulp-uglify'),
 	watch     	= require('gulp-watch');
 
@@ -45,6 +47,14 @@ var opts = {
 var error  = chalk.red.bold,
 	hint   = chalk.yellow.bold,
 	change  = chalk.red;
+
+/**================================================
+  		Static server using connec and tiny-lr
+===================================================*/
+
+
+
+
 
 /**================================================
   		HTML -- minify html to build

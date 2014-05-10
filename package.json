@@ -16,7 +16,9 @@
     "gulp-watch": "^0.6.4",
     "jshint-stylish": "^0.2.0",
     "chalk": "^0.4.0",
-    "run-sequence": "^0.3.6"
+    "connect": "~2.15.0",
+    "run-sequence": "^0.3.6",
+    "tiny-lr": "0.0.7"
   },
   "scripts": {
     "postinstall": "bower install",
