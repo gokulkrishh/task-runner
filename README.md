@@ -1,4 +1,4 @@
-Task-Runner using gulp.js ( http://gulpjs.com/ )
+A Task runner using gulp 
 =================================================
 
 Installation guide:
