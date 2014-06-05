@@ -1,0 +1,10 @@
+
+
+body { background: #fff; }
+
+.container {
+	&.h1 {
+		color: #000;
+		font-size: 45px;
+	}
+}
