@@ -1,13 +1,9 @@
 {
   "name": "task-run",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "dependencies" : {
     "jquery" : "*"
   },
-  "homepage": "https://github.com/gokulkrishh/task-run",
-  "authors": [
-    "gokulkrishh <krishnangokul9@gmail.com>"
-  ],
   "moduleType": [
     "node"
   ],
