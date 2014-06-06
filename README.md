@@ -1,18 +1,28 @@
-Task run using gulp.js 
+Task Runner using gulp.js 
 =================================================
-    Task run is initially aimed to ease the pain of minification and linting of html, js, css, image 
+    Task Runner is initially aimed to ease the pain of minification and linting of html, js, css, image 
     files and blah blah blah. Go to installation guide.
+
+Required Dependencies:
+=======================
+    Make sure Node && Bower installed
+
+    1. node -v & bower -v to check node is installed or not
+    2. If not go to (http://nodejs.org/)
+    3. After node installation, 
+
+        npm install bower -g
 
 Installation guide:
 =====================
     
     1. Copy all your existing files to app/ or create your own files in folder structure like below
     
-    app/           (development directory)
-      -js/         (js files)
-      -lib/        (library files)
-      -css/        (both sass and css files & import sass files to app.scss)
-      -images/     (images)
+        app/           (development directory)
+          -js/         (js files)
+          -lib/        (library files)
+          -css/        (both sass and css files & import sass files to app.scss)
+          -images/     (images)
     
     2. Import your SASS files to app.scss and thats it.
 
@@ -27,25 +37,17 @@ Run following command:
 To install new library through bower:
 ======================================
 
-    Node && Bower is required to use this command
+    Again make sure Node && Bower installed
     
-    1. node -v & bower -v to check node is installed or not
-    2. If not go to (http://nodejs.org/)
-    3. After node installation, 
-
-        npm install bower -g
-    
-    4.Now add library through 
-
-        bower install <library-name> --save-dev
+    bower install <library-name> --save-dev
 
 Manually add library:
 =====================
 
     1. Add library for eg: jquery
 
-    app/
-      -js/ (add jquery.js file here)
+        app/
+          -js/ (add jquery.js file here)
 
 Seperate gulp commands:
 =========================
