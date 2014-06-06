@@ -64,8 +64,7 @@ var serverConfig = {
 
 //zip config
 var date  	   = new Date(),
-	dateString = date.toDateString(); //Thu Jun 05 2014
-
+	dateString = date.toDateString();
 
 /**================================================
   		Server & livereload using gulp-connect
@@ -96,7 +95,7 @@ gulp.task('html', function() {
 gulp.task('sass', function() {
 	console.log(hint('\n --------- Running SASS tasks ------------------------------------------->>>'));
     return gulp.src(['app/css/app.scss'])
-    .pipe(sass({onError: callback})) //to show error log add this --> errLogToConsole: true
+    .pipe(sass({onError: callback}))
     .pipe(gulp.dest(src.sass))
     .pipe(connect.reload());
 });

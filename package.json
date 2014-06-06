@@ -1,5 +1,5 @@
 {
-  "name": "Task-Runner",
+  "name": "task-runner",
   "version": "0.0.1",
   "description": "A task runner using gulp.js",
   "dependencies": {},
