@@ -1,6 +1,6 @@
-Task runner using gulp.js 
+Task run using gulp.js 
 =================================================
-    Task runner is initially aimed to ease the pain of minification and linting of html, js, css, image files and blah blah blah.
+    Task run is initially aimed to ease the pain of minification and linting of html, js, css, image files and blah blah blah.
 
 Installation guide:
 =====================

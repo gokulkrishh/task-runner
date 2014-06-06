@@ -1,7 +1,7 @@
 {
-  "name": "task-runner",
+  "name": "task-run",
   "version": "0.0.1",
-  "description": "A task runner using gulp.js",
+  "description": "A task run using gulp.js",
   "dependencies": {},
   "devDependencies": {
     "bower": "*",
