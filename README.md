@@ -15,21 +15,24 @@ Installation guide:
     
     2. Import your SASS files to app.scss and thats it.
 
-    3. Enter gulp in termainal to see the magic.
+    3. Enter gulp in terminal to see the magic.
     
 Run following command:
 ========================
     
     1. gulp (dev mode)
-    2. gulp prod (production mode)
+    2. gulp prod (production mode) to uglify JS files and minify both CSS & HTML 
 
 To install new library through bower:
 ======================================
 
-    Node is required to use this command
+    Node && Bower is required to use this command
     
-    1. node -v to check node is installed or not
-    2. If not go to http://nodejs.org/ to install
+    1. node -v & bower -v to check node is installed or not
+    2. If not go to (http://nodejs.org/)
+    3. After node installation, 
+
+        npm install bower -g
     
     bower install <library-name> --save-dev
 
@@ -45,9 +48,9 @@ Seperate gulp commands:
 =========================
 
     1. gulp<space>zip           -- To create a zip folder of your development
-    2. gulp<space>html          -- To concat and minify(production mode)
-    3. gulp<space>css           -- To convert sass to css and concat to one single file
-    4. gulp<space>scripts       -- To lint and concat to one single file
+    2. gulp<space>html          -- To copy html files to build/
+    3. gulp<space>css           -- To convert sass to css and concat into one single file
+    4. gulp<space>scripts       -- To lint and concat into one single file
     5. gulp<space>img-min       -- To minify image files
     6. gulp<space>concat-bower  -- To concat all bower dependencies in one single file
     7. gulp<space>watch         -- To watch all file changes and do all above tasks
