@@ -1,6 +1,7 @@
 Task run using gulp.js 
 =================================================
-    Task run is initially aimed to ease the pain of minification and linting of html, js, css, image files and blah blah blah. Go to installation guide.
+    Task run is initially aimed to ease the pain of minification and linting of html, js, css, 
+    image files and blah blah blah. Go to installation guide.
 
 Installation guide:
 =====================

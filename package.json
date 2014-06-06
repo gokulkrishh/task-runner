@@ -29,12 +29,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gokulkrishh/task-run.git"
+    "url": "https://github.com/gokulkrishh/task-runner.git"
   },
   "author": "gokulkrishh (https://github.com/gokulkrishh)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gokulkrishh/task-run/issues"
+    "url": "https://github.com/gokulkrishh/task-runner/issues"
   },
-  "homepage": "https://github.com/gokulkrishh/task-run"
+  "homepage": "https://github.com/gokulkrishh/task-runner"
 }
