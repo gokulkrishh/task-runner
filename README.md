@@ -1,7 +1,7 @@
 Task run using gulp.js 
 =================================================
-    Task run is initially aimed to ease the pain of minification and linting of html, js, css, 
-    image files and blah blah blah. Go to installation guide.
+    Task run is initially aimed to ease the pain of minification and linting of html, js, css, image 
+    files and blah blah blah. Go to installation guide.
 
 Installation guide:
 =====================
@@ -22,7 +22,7 @@ Run following command:
 ========================
     
     1. gulp (dev mode)
-    2. gulp prod (production mode) to uglify JS files and minify both CSS & HTML 
+    2. gulp prod (production mode) to uglify JS files and minify both CSS & HTML files
 
 To install new library through bower:
 ======================================
@@ -35,15 +35,17 @@ To install new library through bower:
 
         npm install bower -g
     
-    bower install <library-name> --save-dev
+    4.Now add library through 
+
+        bower install <library-name> --save-dev
 
 Manually add library:
 =====================
 
-    1. Add library for eg: Jquery
+    1. Add library for eg: jquery
 
     app/
-      -js/ (add here)
+      -js/ (add jquery.js file here)
 
 Seperate gulp commands:
 =========================
