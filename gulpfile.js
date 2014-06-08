@@ -156,13 +156,14 @@ gulp.task('img-min', function () {
 
 gulp.task('watch', function() {
 	console.log(hint('\n --------- Watching All Files ------------------------------------------->>> \n'));
-	var html   = gulp.watch(['app/*.html'], ['html']),
-		script = gulp.watch(['app/js/**/*.js'], ['scripts']),
-		css    = gulp.watch(['app/css/*.css'], ['css']),
-		sass   = gulp.watch(['app/css/*.scss'], ['css']);
+	var html   	= gulp.watch(['app/*.html'], ['html']),
+		script 	= gulp.watch(['app/js/**/*.js'], ['scripts']),
+		css    	= gulp.watch(['app/css/*.css'], ['css']),
+		sass   	= gulp.watch(['app/css/*.scss'], ['css']),
+		imgMin  = gulp.watch(['app/images/*.*'], ['img-min']);
 
 	var log = function(event) {
-		console.log(change('\n -- File ' + event.path + ' was ' + event.type + ' -->>> \n'));
+		console.log(change('\n -- File ' + event.path + ' was ' + event.type + ' -->>>'));
 	};
 
 	//on change print file name and event type
@@ -170,6 +171,7 @@ gulp.task('watch', function() {
 	script.on('change', log);
 	css.on('change', log);
 	sass.on('change', log);
+	imgMin.on('change', log);
 
 });
 
