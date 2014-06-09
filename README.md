@@ -11,7 +11,7 @@ Required Dependencies:
     2. If not go to (http://nodejs.org/)
     3. After node installation, 
 
-        npm install bower -g
+        npm install (to install all node and bower dependencies)
 
 Installation guide:
 =====================
