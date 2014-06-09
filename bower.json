@@ -1,7 +1,10 @@
 {
-  "name": "",
+  "name": "task-runner",
   "version": "0.0.0",
   "dependencies" : {},
+  "devDependencies" : {
+    "jquery":"*"
+  },
   "homepage": "https://github.com/gokulkrishh/task-runner",
   "authors": [
     "gokulkrishh <krishnangokul9@gmail.com>"
