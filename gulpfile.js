@@ -164,9 +164,10 @@ gulp.task('concat-bower', function() {
 	.pipe(sass())
 	.pipe(concat('_bower.css'))
 	.pipe(fileFilter)
+	.pipe(cssFilter.restore())
 	.pipe(gulpif(production, uglify()))
 	.pipe(gulp.dest(build.css))
-	.pipe(cssFilter.restore())
+	.pipe(fileFilter.restore())
 	.pipe(connect.reload());
 });
 
