@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp 	  	= require('gulp'),
-	concatBower = require('gulp-bower-files'),
+	bower 		= require('gulp-bower-files'),
 	chalk 	  	= require('chalk'),
 	concat 	  	= require('gulp-concat'),
 	connect  	= require('gulp-connect'),
@@ -149,10 +149,10 @@ gulp.task('concat-bower', function() {
 	console.log(hint('\n --------- Bower Concat ------------------------------------------------->>> \n'));
 	var jsFilter   = filter('**/*.js'),
 		cssFilter  = filter('**/*.css'),
-		fileFilter = filter('!**/*.css', '!**/*.js', '**/*.scss');
+		fileFilter = filter('!**/*.min.js', '!**/*.js', '!**/*.scss');
 
 	//for js files
-	concatBower(bowerConfig)
+	return bower(bowerConfig)
 	.pipe(jsFilter)
 	.pipe(concat('_bower.js'))
 	.pipe(gulpif(production, uglify()))
@@ -161,13 +161,10 @@ gulp.task('concat-bower', function() {
 
 	//for css files
 	.pipe(cssFilter)
-	.pipe(sass())
 	.pipe(concat('_bower.css'))
-	.pipe(fileFilter)
-	.pipe(cssFilter.restore())
 	.pipe(gulpif(production, uglify()))
 	.pipe(gulp.dest(build.css))
-	.pipe(fileFilter.restore())
+	.pipe(cssFilter.restore())
 	.pipe(connect.reload());
 });
 
@@ -193,7 +190,7 @@ gulp.task('watch', function() {
 		css    	= gulp.watch(['app/css/*.css'], ['css']),
 		sass   	= gulp.watch(['app/css/*.scss'], ['css']),
 		imgMin  = gulp.watch(['app/images/*.*'], ['img-min']),
-		bower   = gulp.watch(['bower_components/**/*.js', 'bower_components/*.js', 'bower.json'], ['concat-bower']);
+		bower   = gulp.watch(['bower_components/**/*.*', 'bower_components/**/*.js', 'bower_components/*.js', 'bower.json'], ['concat-bower']);
 
 	var log = function(event) {
 		console.log(change('\n -- File ' + event.path + ' was ' + event.type + ' -->>>'));
