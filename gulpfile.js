@@ -147,10 +147,27 @@ gulp.task('scripts', function() {
 
 gulp.task('concat-bower', function() {
 	console.log(hint('\n --------- Bower Concat ------------------------------------------------->>> \n'));
+	var jsFilter   = filter('**/*.js'),
+		cssFilter  = filter('**/*.css'),
+		fileFilter = filter('!**/*.css', '!**/*.js', '**/*.scss');
+
+	//for js files
 	concatBower(bowerConfig)
-	.pipe(concat('bowerFiles.js'))
+	.pipe(jsFilter)
+	.pipe(concat('_bower.js'))
 	.pipe(gulpif(production, uglify()))
-	.pipe(gulp.dest(build.js));
+	.pipe(gulp.dest(build.js))
+	.pipe(jsFilter.restore())
+
+	//for css files
+	.pipe(cssFilter)
+	.pipe(sass())
+	.pipe(concat('_bower.css'))
+	.pipe(fileFilter)
+	.pipe(gulpif(production, uglify()))
+	.pipe(gulp.dest(build.css))
+	.pipe(cssFilter.restore())
+	.pipe(connect.reload());
 });
 
 /**================================================
@@ -175,7 +192,7 @@ gulp.task('watch', function() {
 		css    	= gulp.watch(['app/css/*.css'], ['css']),
 		sass   	= gulp.watch(['app/css/*.scss'], ['css']),
 		imgMin  = gulp.watch(['app/images/*.*'], ['img-min']),
-		bower   = gulp.watch(['bower_components/**/*.js', 'bower_components/**/*.js', 'bower.json'], ['concat-bower']);
+		bower   = gulp.watch(['bower_components/**/*.js', 'bower_components/*.js', 'bower.json'], ['concat-bower']);
 
 	var log = function(event) {
 		console.log(change('\n -- File ' + event.path + ' was ' + event.type + ' -->>>'));
