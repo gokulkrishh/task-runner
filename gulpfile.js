@@ -5,6 +5,7 @@ var gulp 	  	= require('gulp'),
 	chalk 	  	= require('chalk'),
 	concat 	  	= require('gulp-concat'),
 	connect  	= require('gulp-connect'),
+	changed  	= require('gulp-changed'),
 	filter  	= require('gulp-filter'),
 	gulpif 	  	= require('gulp-if'),
 	imagemin 	= require('gulp-imagemin'),
@@ -95,6 +96,7 @@ gulp.task('server', function () {
 gulp.task('html', function() {
 	console.log(hint('\n --------- Running HTML tasks ------------------------------------------>>>'));
 	return gulp.src(['app/*.html'])
+	.pipe(changed(build.root))
 	.pipe(gulpif(production, minifyhtml(opts)))
 	.pipe(gulp.dest(build.root))
 	.pipe(connect.reload());
@@ -107,6 +109,7 @@ gulp.task('html', function() {
 gulp.task('sass', function() {
 	console.log(hint('\n --------- Running SASS tasks ------------------------------------------->>>'));
     return gulp.src(['app/css/app.scss'])
+    .pipe(changed(src.sass))
     .pipe(sass({onError: callback}))
     .pipe(gulp.dest(src.sass))
     .pipe(connect.reload());
@@ -120,6 +123,7 @@ var callback = function(err) {
 gulp.task('css', ['sass'], function() {
 	console.log(hint('\n --------- Running CSS tasks -------------------------------------------->>>'));
 	return gulp.src(['app/css/*.css', 'sass/app.css'])
+	.pipe(changed(src.sass))
 	.pipe(gulpif(production, minifycss()))
 	.pipe(concat('styles.css'))
 	.pipe(gulp.dest(build.css))
@@ -135,6 +139,7 @@ gulp.task('scripts', function() {
 	return gulp.src(['app/js/**/*.js']) // 'gulpfile.js'
 	.pipe(jshint('.jshintrc'))
 	.pipe(jshint.reporter(stylish))
+	.pipe(changed(build.js))
 	.pipe(concat('all.js'))
 	.pipe(gulpif(production, uglify()))
 	.pipe(gulp.dest(build.js))
@@ -197,12 +202,12 @@ gulp.task('watch', function() {
 	};
 
 	//on change print file name and event type
-	html.on('change', log);
-	script.on('change', log);
-	css.on('change', log);
-	sass.on('change', log);
-	imgMin.on('change', log);
-	bower.on('change', log);
+	html.once('change', log);
+	script.once('change', log);
+	css.once('change', log);
+	sass.once('change', log);
+	imgMin.once('change', log);
+	bower.once('change', log);
 
 });
 
