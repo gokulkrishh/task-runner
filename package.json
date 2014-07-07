@@ -5,8 +5,8 @@
   "dependencies": {},
   "devDependencies": {
     "bower": "*",
-    "chalk": "^0.4.0",
-    "gulp": "^3.6.2",
+    "chalk": "*",
+    "gulp": "*",
     "gulp-bower-files": "*",
     "gulp-changed": "^0.4.0",
     "gulp-concat": "^2.2.0",
@@ -25,10 +25,19 @@
     "jshint-stylish": "^0.2.0",
     "open": "^0.0.5",
     "path": "^0.4.9",
-    "run-sequence": "^0.3.6"
+    "run-sequence": "^0.3.6",
+    "gulp-load-plugins": "^0.5.3",
+    "gulp-size": "~0.4.0",
+    "gulp-rev": "~0.4.1",
+    "gulp-rimraf": "~0.1.0",
+    "gulp-ignore": "~1.1.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
