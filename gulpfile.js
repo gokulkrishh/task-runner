@@ -156,7 +156,7 @@ gulp.task('concat-bower', function() {
 	//for js files
 	return plugins.bowerFiles(bowerConfig)
 		.pipe(jsFilter)
-		.pipe(plugins.concat('_bower.js'))
+		.pipe(plugins.concat('bower.js'))
 		.pipe(gulpif(production, plugins.uglify()))
 		.pipe(plugins.size())
 		.pipe(gulp.dest(build.js))
@@ -164,7 +164,7 @@ gulp.task('concat-bower', function() {
 
 		//for css files
 		.pipe(cssFilter)
-		.pipe(plugins.concat('_bower.css'))
+		.pipe(plugins.concat('bower.css'))
 		.pipe(gulpif(production, plugins.uglify()))
 		.pipe(plugins.size())
 		.pipe(gulp.dest(build.css))
