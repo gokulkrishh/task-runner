@@ -59,5 +59,5 @@ Seperate gulp commands:
     5. gulp<space>img-min       -- To minify image files
     6. gulp<space>concat-bower  -- To concat all bower dependencies in one single file
     7. gulp<space>watch         -- To watch all file changes and do all above tasks
-    7. gulp<space>browserSync         -- To check responsiveness in all browser
+    7. gulp<space>browserSync   -- To check responsiveness in all browser
 
