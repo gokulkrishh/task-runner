@@ -63,12 +63,6 @@ var bowerConfig = {
 	}
 };
 
-//browerSync config
-var browserConfig = {
-	proxy : '127.0.0.1',
-	port  : 8888
-};
-
 /**================================================
   		Server & livereload using gulp-connect
 ===================================================*/
@@ -218,13 +212,13 @@ gulp.task('watch', function() {
 });
 
 /**================================================
-  		Clean - remove files and folder
+  		Clean - remove files and folder in build
 ===================================================*/
 
 function cleanFiles(files, log) {
 	console.log(hint('\n --------- Clean:'+ log + 'tasks ------------------------------------------>>> \n'));
 	return gulp.src(files, {read : false })
-	.pipe(plugins.ignore(['node_modules/**']))
+	.pipe(plugins.ignore(['node_modules/**', 'bower_components/**']))
 	.pipe(plugins.rimraf());
 }
 
@@ -240,12 +234,11 @@ gulp.task('cleanZip', function() {
   		Browser sync to sync with browser
 ==================================================*/
 
-gulp.task('browser-sync', function () {
-	browserSync.init([build.root + '/*.html', build.css + '**/*.css', build.js + '**/*.js', build.images + '/*.*'], {
+gulp.task('browserSync', function () {
+	browserSync.init([build.root + '/*.html', build.root + '/**/*.html', build.css + '**/*.css', build.js + '**/*.js', build.images + '/*.*'], {
 		server : {
 			baseDir : './build',
-		},
-		proxy: browserConfig
+		}
 	});
 });
 
