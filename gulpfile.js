@@ -27,7 +27,8 @@ var	build = {
 	css : 'build/css',
 	js : 'build/js',
 	images : 'build/images',
-	templates : 'build/templates'
+	templates : 'build/templates',
+	bower : 'build/bower',
 };
 
 var production = false;
@@ -165,7 +166,7 @@ gulp.task('concat-bower', function() {
 		.pipe(plugins.concat('_bower.js'))
 		.pipe(gulpif(production, plugins.uglify()))
 		.pipe(plugins.size())
-		.pipe(gulp.dest(build.js))
+		.pipe(gulp.dest(build.bower))
 		.pipe(jsFilter.restore())
 
 		//for css files
@@ -173,7 +174,7 @@ gulp.task('concat-bower', function() {
 		.pipe(plugins.concat('_bower.css'))
 		.pipe(gulpif(production, plugins.uglify()))
 		.pipe(plugins.size())
-		.pipe(gulp.dest(build.css))
+		.pipe(gulp.dest(build.bower))
 		.pipe(cssFilter.restore())
 		.pipe(plugins.connect.reload());
 });
