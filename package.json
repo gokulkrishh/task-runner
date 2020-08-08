@@ -27,7 +27,7 @@
     "gulp-watch": "^0.6.4",
     "gulp-zip": "^0.3.4",
     "jshint-stylish": "^0.2.0",
-    "open": "^0.0.5",
+    "open": "^7.1.0",
     "path": "^0.4.9",
     "run-sequence": "^0.3.6"
   },
